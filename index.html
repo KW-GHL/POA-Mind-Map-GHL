@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Power of Attorney Mind Map</title>
+  <style>
+    /*—— 整体容器 ——*/
+    #poa-mindmap .mindmap-container {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      margin: 0 auto;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /*—— SVG 连接线 ——*/
+    #poa-mindmap .connectors {
+      position: absolute;
+      top: 0; left: 0;
+      z-index: 1;
+    }
+
+    /*—— 通用节点样式 ——*/
+    #poa-mindmap .node {
+      position: absolute;
+      z-index: 2;
+      background: #eaeaea;
+      border-radius: 50px;
+      padding: 10px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    #poa-mindmap .node:hover {
+      transform: scale(1.05);
+    }
+
+    /*—— 中心节点 ——*/
+    #poa-mindmap .node.center {
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: #ffffff;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /*—— 左右主分支 ——*/
+    #poa-mindmap .node.branch.left {
+      top: 50%; left: 20%;
+      transform: translate(-50%, -50%);
+    }
+    #poa-mindmap .node.branch.right {
+      top: 50%; left: 80%;
+      transform: translate(-50%, -50%);
+    }
+
+    /*—— 子节点容器 ——*/
+    #poa-mindmap .subnodes {
+      position: absolute;
+      z-index: 2;
+      width: 220px;
+      display: none;
+    }
+    #poa-mindmap .subnodes.donee {
+      top: 50%; left: 20%;
+      transform: translate(-50%, 60%);
+    }
+    #poa-mindmap .subnodes.lawyer {
+      top: 50%; left: 80%;
+      transform: translate(-50%, 60%);
+    }
+
+    /*—— 各子节点 ——*/
+    #poa-mindmap .subnodes .subnode {
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      cursor: default;
+    }
+
+    /*—— 响应式 ——*/
+    @media (max-width: 900px) {
+      #poa-mindmap .mindmap-container { height: auto; }
+      #poa-mindmap .connectors { display: none; }
+      #poa-mindmap .node,
+      #poa-mindmap .subnodes {
+        position: static;
+        transform: none;
+        margin: 20px auto;
+      }
+      #poa-mindmap .subnodes { display: block; width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<section id="poa-mindmap">
+  <div class="mindmap-container">
+
+    <!-- SVG 画线：中心→左右分支 -->
+    <svg class="connectors" width="100%" height="100%">
+      <line x1="50%" y1="50%" x2="20%" y2="50%" stroke="#333" stroke-width="2" />
+      <line x1="50%" y1="50%" x2="80%" y2="50%" stroke="#333" stroke-width="2" />
+    </svg>
+
+    <!-- 中心节点 -->
+    <div class="node center">Power of Attorney</div>
+
+    <!-- 主分支节点 -->
+    <div class="node branch left" data-branch="donee">
+      Donee (Attorney): Duties and Limits
+    </div>
+    <div class="node branch right" data-branch="lawyer">
+      Lawyer: Independent Safeguard in the Process
+    </div>
+
+    <!-- Donee 子节点 -->
+    <div class="subnodes donee">
+      <div class="subnode">
+        May manage the donor’s finances and legal affairs only within the authority granted in the Power of Attorney document – e.g. operating bank accounts, signing contracts, buying or selling property
+      </div>
+      <div class="subnode">
+        Must act in the donor’s best interests at all times and keep decisions consistent with any written instructions
+      </div>
+      <div class="subnode">
+        Has a fiduciary duty to keep accurate records of all transactions; failure to do so is an offence
+      </div>
+      <div class="subnode">
+        Cannot mix personal funds with the donor’s assets or benefit personally while acting
+      </div>
+      <div class="subnode">
+        Authority ends automatically on the donor’s death, revocation or court intervention
+      </div>
+      <div class="subnode">
+        May be personally liable for losses caused by negligence or misuse; serious misconduct can attract criminal penalties
+      </div>
+      <div class="subnode">
+        No government body monitors the donee day-to-day; relatives can apply to SACAT or the Supreme Court if misconduct is suspected
+      </div>
+    </div>
+
+    <!-- Lawyer 子节点 -->
+    <div class="subnodes lawyer">
+      <div class="subnode">
+        Confirms legal capacity and free will before the donor signs; capacity doubt can invalidate the document later
+      </div>
+      <div class="subnode">
+        Acts as an authorised witness: South Australian law requires the donor’s signature to be witnessed by a solicitor, JP or other authorised person for the instrument to be valid
+      </div>
+      <div class="subnode">
+        Drafts clear, tailored wording so the scope, start date and any conditions (e.g. joint action, activation on medical certificate) are legally enforceable and understood
+      </div>
+      <div class="subnode">
+        Advises whether the Power of Attorney must be lodged with Land Services SA before real-estate dealings and attends to lodging requirements
+      </div>
+      <div class="subnode">
+        Provides certified copies accepted by banks, share registries and government agencies; stores the original securely for future reliance
+      </div>
+      <div class="subnode">
+        Assists with future variations or revocation, ensuring all parties and institutions are properly notified to prevent outdated authority being used
+      </div>
+      <div class="subnode">
+        Keeps contemporaneous file notes, providing independent evidence if the document or the donee’s actions are ever challenged
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // 点击分支节点，切换显示对应子节点
+  document.querySelectorAll('#poa-mindmap .node.branch').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var branch = this.getAttribute('data-branch');
+      // 隐藏所有子节点
+      document.querySelectorAll('#poa-mindmap .subnodes').forEach(function(sn) {
+        sn.style.display = 'none';
+      });
+      // 切换目标子节点的显示
+      var target = document.querySelector('#poa-mindmap .subnodes.' + branch);
+      target.style.display = (target.style.display === 'block' ? 'none' : 'block');
+    });
+  });
+</script>
+
+</body>
+</html>
