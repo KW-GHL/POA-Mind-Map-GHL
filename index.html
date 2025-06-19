@@ -1,149 +1,170 @@
-<!-- ======================================= -->
-<!-- Power of Attorney 逻辑流程路径示例 -->
-<!-- ======================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Power of Attorney Process Timeline</title>
+  <style>
+    /* —— 本 Section 专属样式 —— */
+    #poa-timeline {
+      padding: 0;            /* 去除全局多余 padding */
+      margin: 0 auto;        /* 居中整个区块 */
+      max-width: 800px;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+    }
+    #poa-timeline .timeline {
+      position: relative;
+      list-style: none;
+      padding: 0;
+      margin: 40px 0;       /* 上下间距 */
+    }
+    /* 中心竖线 */
+    #poa-timeline .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: #ccc;
+      transform: translateX(-50%);
+    }
+    /* 每个步骤项 */
+    #poa-timeline .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 10px 20px;
+      box-sizing: border-box;
+    }
+    /* 左侧项目 */
+    #poa-timeline .timeline-item.left {
+      left: 0;
+      text-align: right;
+    }
+    /* 右侧项目 */
+    #poa-timeline .timeline-item.right {
+      left: 50%;
+      text-align: left;
+    }
+    /* 节点小圆点 */
+    #poa-timeline .timeline-item::after {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      background: #ef3125;
+      border-radius: 50%;
+      transform: translateX(-50%);
+    }
+    /* 内容框 */
+    #poa-timeline .timeline-content {
+      display: inline-block;
+      background: #fff;
+      padding: 12px 16px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    #poa-timeline .timeline-content h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    #poa-timeline .timeline-content p {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    /* Hover 提升效果 */
+    #poa-timeline .timeline-item:hover .timeline-content {
+      transform: scale(1.02);
+    }
+    /* 响应式：小屏幕改为全宽 */
+    @media (max-width: 900px) {
+      #poa-timeline {
+        padding: 0 10px;
+      }
+      #poa-timeline .timeline::before {
+        left: 8px;
+      }
+      #poa-timeline .timeline-item,
+      #poa-timeline .timeline-item.left,
+      #poa-timeline .timeline-item.right {
+        left: 0;
+        width: 100%;
+        text-align: left;
+        padding-left: 20px;
+      }
+      #poa-timeline .timeline-item::after {
+        left: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
 
 <section id="poa-timeline">
   <ul class="timeline">
     <!-- Step 1: Pre-signing -->
     <li class="timeline-item left">
       <div class="timeline-content">
-        <h3>Step 1 – Pre-signing</h3>
-        <p><strong>Lawyer:</strong> Confirms legal capacity and free will before the donor signs; capacity doubt can invalidate the document later. Acts as an authorised witness: South Australian law requires the donor’s signature to be witnessed by a solicitor, JP or other authorised person for the instrument to be valid.</p>
+        <h3>Step 1 – Pre-Signing</h3>
+        <p><strong>Lawyer:</strong> Confirm the donor’s legal capacity and free will before drafting starts to ensure validity.</p>
       </div>
     </li>
-    <!-- Step 2: Draft & Wording -->
+
+    <!-- Step 2: Drafting -->
     <li class="timeline-item right">
       <div class="timeline-content">
-        <h3>Step 2 – Draft & Wording</h3>
-        <p><strong>Lawyer:</strong> Drafts clear, tailored wording so the scope, start date and any conditions (e.g. joint action, activation on medical certificate) are legally enforceable and understood. Advises whether the Power of Attorney must be lodged with Land Services SA before real-estate dealings and attends to lodging requirements.</p>
+        <h3>Step 2 – Drafting & Scope</h3>
+        <p><strong>Lawyer:</strong> Draft clear wording, define powers, start date and any conditions (joint action, medical activation). Advise on lodging requirements with Land Services SA if property is involved.</p>
       </div>
     </li>
-    <!-- Step 3: Certification -->
+
+    <!-- Step 3: Signing -->
     <li class="timeline-item left">
       <div class="timeline-content">
-        <h3>Step 3 – Certification</h3>
-        <p><strong>Lawyer:</strong> Provides certified copies accepted by banks, share registries and government agencies; stores the original securely for future reliance.</p>
+        <h3>Step 3 – Execution</h3>
+        <p><strong>Donor:</strong> Sign the document before an authorised witness (solicitor, JP, or other prescribed person). <strong>Donee:</strong> May also sign but not mandatory. All signatures must occur within the instrument’s effective period.</p>
       </div>
     </li>
-    <!-- Step 4: Activation & Duties -->
+
+    <!-- Step 4: Certification & Storage -->
     <li class="timeline-item right">
       <div class="timeline-content">
-        <h3>Step 4 – Activation & Duties</h3>
-        <p><strong>Donee (Attorney):</strong> May manage the donor’s finances and legal affairs only within the authority granted in the Power of Attorney document – e.g. operating bank accounts, signing contracts, buying or selling property. Must act in the donor’s best interests at all times and keep decisions consistent with any written instructions. Has a fiduciary duty to keep accurate records of all transactions; failure to do so is an offence. Cannot mix personal funds with the donor’s assets or benefit personally while acting.</p>
+        <h3>Step 4 – Certification & Storage</h3>
+        <p><strong>Lawyer:</strong> Provide certified copies for banks, share registries and agencies. Store the original securely. Lodge with Land Services SA when required for real-estate dealings.</p>
       </div>
     </li>
-    <!-- Step 5: Variation & Safeguard -->
+
+    <!-- Step 5: Activation & Duties -->
     <li class="timeline-item left">
       <div class="timeline-content">
-        <h3>Step 5 – Variation & Safeguard</h3>
-        <p><strong>Lawyer:</strong> Assists with future variations or revocation, ensuring all parties and institutions are properly notified to prevent outdated authority being used. Keeps contemporaneous file notes, providing independent evidence if the document or the donee’s actions are ever challenged.</p>
+        <h3>Step 5 – Activation & Duties</h3>
+        <p><strong>Donee (Attorney):</strong> Manage finances and legal affairs strictly within granted powers. Act in donor’s best interests, keep accurate records, and avoid mixing personal and donor assets.</p>
       </div>
     </li>
-    <!-- Step 6: Liability & Oversight -->
+
+    <!-- Step 6: Variation & Oversight -->
     <li class="timeline-item right">
       <div class="timeline-content">
-        <h3>Step 6 – Liability & Oversight</h3>
-        <p><strong>Donee (Attorney):</strong> May be personally liable for losses caused by negligence or misuse; serious misconduct can attract criminal penalties. No government body monitors the donee day-to-day; relatives can apply to SACAT or the Supreme Court if misconduct is suspected.</p>
+        <h3>Step 6 – Variation & Oversight</h3>
+        <p><strong>Lawyer:</strong> Assist with future variations or revocation and notify all relevant parties. <strong>Donee:</strong> Subject to oversight; misconduct can be challenged via SACAT or Supreme Court.</p>
       </div>
     </li>
+
     <!-- Step 7: Termination -->
     <li class="timeline-item left">
       <div class="timeline-content">
         <h3>Step 7 – Termination</h3>
-        <p><strong>Donee (Attorney):</strong> Authority ends automatically on the donor’s death, revocation or court intervention.</p>
+        <p><strong>Donee:</strong> Authority ends on donor’s death, formal revocation, or by court appointment of an administrator.</p>
       </div>
     </li>
   </ul>
 </section>
 
-<style>
-  /* —— 仅作用于本 Section —— */
-  #poa-timeline {
-    padding: 40px 0;
-  }
-  #poa-timeline .timeline {
-    position: relative;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  /* 中心竖线 */
-  #poa-timeline .timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #ccc;
-    transform: translateX(-50%);
-  }
-  /* 时间线项 */
-  #poa-timeline .timeline-item {
-    position: relative;
-    width: 50%;
-    padding: 20px 10px;
-  }
-  /* 左侧内容 */
-  #poa-timeline .timeline-item.left {
-    left: 0;
-    text-align: right;
-  }
-  /* 右侧内容 */
-  #poa-timeline .timeline-item.right {
-    left: 50%;
-    text-align: left;
-  }
-  /* 圆形节点 */
-  #poa-timeline .timeline-item::after {
-    content: '';
-    position: absolute;
-    top: 24px;
-    left: 50%;
-    width: 12px;
-    height: 12px;
-    background: #ef3125;
-    border-radius: 50%;
-    transform: translateX(-50%);
-  }
-  /* 内容卡片 */
-  #poa-timeline .timeline-content {
-    display: inline-block;
-    background: #fff;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-  #poa-timeline .timeline-content h3 {
-    margin-top: 0;
-    font-size: 1rem;
-    font-weight: bold;
-  }
-  /* Hover 效果 */
-  #poa-timeline .timeline-item:hover .timeline-content {
-    transform: scale(1.02);
-  }
-  /* 响应式：小屏屏幕全宽 */
-  @media (max-width: 900px) {
-    #poa-timeline .timeline::before { left: 8px; }
-    #poa-timeline .timeline-item,
-    #poa-timeline .timeline-item.left,
-    #poa-timeline .timeline-item.right {
-      left: 0;
-      width: 100%;
-      text-align: left;
-      padding-left: 30px;
-      padding-right: 15px;
-    }
-    #poa-timeline .timeline-item::after {
-      left: 8px;
-    }
-  }
-</style>
+</body>
+</html>
